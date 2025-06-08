@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema({
     firstname: {
@@ -83,5 +84,7 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 }
 )
+
+
 const User = mongoose.model("User",userSchema)
 export default User
