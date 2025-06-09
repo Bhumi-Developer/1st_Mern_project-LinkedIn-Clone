@@ -22,8 +22,8 @@ function Login() {
         password,
       },{withCredentials: true});
       
-     alert("user signed in successfully")
-     setUserData(result.data)
+    //  alert("user signed in successfully")
+     setUserData(res.data)
      navigate("/")
      setError("")
      setEmail("")
@@ -31,7 +31,7 @@ function Login() {
     } catch (err) {
    const errorMsg = err.response?.data?.message || "Something went wrong";
    setError(errorMsg);
-   console.log(err.response?.data);
+  //  console.log(err.response?.data);
    
 }
 finally{

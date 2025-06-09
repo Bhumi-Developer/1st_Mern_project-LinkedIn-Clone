@@ -4,6 +4,8 @@ import axios from 'axios'
 
 function UserContext({children}) {
     const [userData,setUserData] = useState(null)
+    const [edit,setEdit] = useState()
+
 
     const getCurrentUser = async()=>{
         try {
@@ -21,7 +23,7 @@ function UserContext({children}) {
       getCurrentUser()
     },[])
     const value = {
-      userData,setUserData
+      userData,setUserData,edit,setEdit
     }
   return (
     <div>
