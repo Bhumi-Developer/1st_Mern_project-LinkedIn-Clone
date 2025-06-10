@@ -9,7 +9,7 @@ function UserContext({children}) {
 
     const getCurrentUser = async()=>{
         try {
-            let result = await axios.get("http://localhost:3000/api/auth/currentUser",{
+            let result = await axios.get("http://localhost:3000/api/user/currentUser",{
               withCredentials: true
             })
             setUserData(result.data)

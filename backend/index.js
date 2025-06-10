@@ -26,7 +26,7 @@ app.get("/",(req,res)=>{
     res.send("hello")
 })
 app.use("/api/auth",authRouter)
-app.use("/api/auth",userRouter)
+app.use("/api/user",userRouter)
 
 app.listen(port,()=>{
     connectDb()
