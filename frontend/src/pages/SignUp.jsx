@@ -28,7 +28,7 @@ function SignUp() {
         password,
       },{withCredentials: true});
       
-     alert("user signed up successfully")
+    //  alert("user signed up successfully")
      setUserData(result.data)
      navigate("/")
      setError("")
