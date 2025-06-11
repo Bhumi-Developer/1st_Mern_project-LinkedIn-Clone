@@ -27,7 +27,7 @@ function Nav() {
     }
   }
   return (
-    <div className="w-full h-[60px] bg-[white] fixed top-0 shadow-lg flex justify-between md:justify-around items-center">
+    <div className="w-full h-[60px] bg-[white] fixed top-0 shadow-lg flex justify-between md:justify-around items-center z-[50]">
       <div className="flex justify-center items-center gap-[10px]">
         <div>
           <img src={logo1} className="w-[50px]" onClick={()=>setActiveSearch(false)}/>
@@ -45,7 +45,7 @@ function Nav() {
       <div className="flex justify-center items-center gap-[20px] relative">
 
           {showPopup && <div className="w-[300px] min-h-[300px] bg-white shadow-lg absolute top-[65px] rounded-lg flex flex-col items-center p-[20px] gap-[20px]">
-          <div className="w-[70px] rounded-full overflow-hidden"><img src={profile}/></div>
+          <div className="w-[70px] rounded-full overflow-hidden"><img src={userData.profileImage || profile}/></div>
           <div className="text-[19px] font-semibold text-gray-700">{`${userData.firstname} ${userData.lastname}`}</div>
           <button className="w-[100%] h-[40px] rounded-full border-2 border-[#2dc0ff] text-[#2dc0ff]">View Profile</button>
           <div className="w-full h-[1px] bg-gray-700"></div>
@@ -60,7 +60,7 @@ function Nav() {
         <div>My Network</div></div>
         <div  className="flex flex-col items-center justify-center text-gray-600"><BsBellFill className="w-[23px] h-[23px] text-gray-600 "/>
         <div className="hidden md:block">Notifications</div></div>
-        <div className="w-[50px] rounded-full overflow-hidden cursor-pointer" onClick={()=>setShowPopup(prev=>!prev)}><img src={profile}/></div>
+        <div className="w-[50px] rounded-full overflow-hidden cursor-pointer" onClick={()=>setShowPopup(prev=>!prev)}><img src={userData.profileImage || profile}/></div>
       </div>
     </div>
   );

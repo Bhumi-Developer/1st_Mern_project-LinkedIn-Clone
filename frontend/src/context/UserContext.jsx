@@ -5,6 +5,7 @@ import axios from 'axios'
 function UserContext({children}) {
     const [userData,setUserData] = useState(null)
     const [edit,setEdit] = useState()
+    const [postData,setPostData] = useState([])
 
 
     const getCurrentUser = async()=>{
@@ -19,11 +20,25 @@ function UserContext({children}) {
             
         }
     }
+    const getPost = async()=>{
+        try {
+            let result = await axios.get("http://localhost:3000/api/post/getpost",{
+              withCredentials: true
+            })
+           console.log(result)
+           setPostData(result.data)
+          
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
     useEffect(()=>{
       getCurrentUser()
+      getPost()
     },[])
     const value = {
-      userData,setUserData,edit,setEdit
+      userData,setUserData,edit,setEdit,postData,setPostData
     }
   return (
     <div>

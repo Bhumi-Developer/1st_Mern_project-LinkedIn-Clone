@@ -5,6 +5,7 @@ import connectDb from "./config/db.js"
 import authRouter from "./routes/auth.routes.js"
 import userRouter from "./routes/user.routes.js"
 import cors from "cors"
+import postRouter from "./routes/post.routes.js"
 
 const app = express()
 app.use(cors({
@@ -27,6 +28,7 @@ app.get("/",(req,res)=>{
 })
 app.use("/api/auth",authRouter)
 app.use("/api/user",userRouter)
+app.use("/api/post",postRouter)
 
 app.listen(port,()=>{
     connectDb()
