@@ -8,6 +8,9 @@ import axios from "axios";
 import { UserDataContext } from "../context/UserContext";
 import { AiFillLike } from "react-icons/ai";
 import { LuSendHorizontal } from "react-icons/lu";
+import {io} from "socket.io-client"
+import ConnectionButton from "./ConnectionButton";
+const socket = io("http://localhost:3000")
 
 function Post({ id, author, like, comment, description, image, createdAt}) {
   let { userData, setUserData, getPost } = useContext(UserDataContext);
@@ -44,6 +47,24 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
       console.log(error);
     }
   };
+
+  useEffect(()=>{
+    socket.on("likeUpdated",({postId,likes})=>{
+      if(postId==id){
+        setLikes(likes)
+      }
+    })
+    socket.on("commentAdded",({postId,comm})=>{
+      if(postId==id){
+        setComments(comm)
+      }
+    })
+    return ()=>{
+      socket.off("likeUpdated")
+      socket.off("commentAdded")
+    }
+  },[id])
+
   useEffect(() => {
     getPost();
   }, [likes, setLikes,comments]);
@@ -61,7 +82,9 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
             <div className="text-[16px]">{moment(createdAt).fromNow()}</div>
           </div>
         </div>
-        <div>{/* button */}</div>
+        <div>
+          {userData._id!=author._id && <ConnectionButton userId={author._id}/>}
+        </div>
       </div>
       <div
         className={`w-full ${

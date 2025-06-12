@@ -6,8 +6,29 @@ import authRouter from "./routes/auth.routes.js"
 import userRouter from "./routes/user.routes.js"
 import cors from "cors"
 import postRouter from "./routes/post.routes.js"
+import ConnectionRouter from "./routes/connection.routes.js"
+import http from "http"
+import { Server } from "socket.io"
+export const userSocketMap = new Map()
 
 const app = express()
+let server = http.createServer(app)
+ export const io = new Server(server,{
+    cors:({
+        origin : ['http://localhost:5173'],
+        credentials: true
+    })
+})
+io.on("connection",(socket)=>{
+    // console.log("user connected",socket.id)
+    socket.on("register",(userId)=>{
+        userSocketMap.set(userId,socket.id)
+    })
+
+    socket.on("disconnect",(socket)=>{
+        // console.log("user disconnected",socket.id)
+    })
+})
 app.use(cors({
     origin : ['http://localhost:5173'],
     credentials: true
@@ -29,8 +50,9 @@ app.get("/",(req,res)=>{
 app.use("/api/auth",authRouter)
 app.use("/api/user",userRouter)
 app.use("/api/post",postRouter)
+app.use("/api/connection",ConnectionRouter)
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     connectDb()
     console.log("server started")
 })

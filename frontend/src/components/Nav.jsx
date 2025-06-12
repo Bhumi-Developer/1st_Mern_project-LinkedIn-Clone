@@ -49,14 +49,14 @@ function Nav() {
           <div className="text-[19px] font-semibold text-gray-700">{`${userData.firstname} ${userData.lastname}`}</div>
           <button className="w-[100%] h-[40px] rounded-full border-2 border-[#2dc0ff] text-[#2dc0ff]">View Profile</button>
           <div className="w-full h-[1px] bg-gray-700"></div>
-          <div  className="flex items-center justify-start w-full gap-[20px] text-gray-600 "><HiUsers className="w-[23px] h-[23px] text-gray-600"/>
+          <div  className="flex items-center justify-start w-full gap-[20px] text-gray-600 cursor-pointer " onClick={()=>navigate("/network")}><HiUsers className="w-[23px] h-[23px] text-gray-600" />
         <div>My Network</div></div>
         <button className="w-[100%] h-[40px] rounded-full border-2 border-[#fe243e] text-[#fe243e]" onClick={handleSignOut}>Sign Out</button>
           </div>}
 
-        <div className="lg:flex flex-col items-center justify-center text-gray-600 hidden"><MdHome className="w-[23px] h-[23px] text-gray-600"/>
+        <div className="lg:flex flex-col items-center justify-center text-gray-600 hidden cursor-pointer" onClick={()=>navigate("/")}><MdHome className="w-[23px] h-[23px] text-gray-600" />
         <div>Home</div></div>
-        <div  className="lg:flex flex-col items-center justify-center text-gray-600 hidden"><HiUsers className="w-[23px] h-[23px] text-gray-600"/>
+        <div  className="lg:flex flex-col items-center justify-center text-gray-600 hidden cursor-pointer" onClick={()=>navigate("/network")}><HiUsers className="w-[23px] h-[23px] text-gray-600"/>
         <div>My Network</div></div>
         <div  className="flex flex-col items-center justify-center text-gray-600"><BsBellFill className="w-[23px] h-[23px] text-gray-600 "/>
         <div className="hidden md:block">Notifications</div></div>
