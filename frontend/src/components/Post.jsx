@@ -13,7 +13,7 @@ import ConnectionButton from "./ConnectionButton";
 const socket = io("http://localhost:3000")
 
 function Post({ id, author, like, comment, description, image, createdAt}) {
-  let { userData, setUserData, getPost } = useContext(UserDataContext);
+  let { userData, setUserData, getPost,profileData,setProfileData,handleGetProfile } = useContext(UserDataContext);
   let [more, setMore] = useState(false);
   let [likes, setLikes] = useState(like || []);
   let [commentContent, setCommentContent] = useState("");
@@ -72,7 +72,7 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
   return (
     <div className="w-full min-h-[200px] bg-white rounded-lg shadow-lg p-[20px] flex flex-col gap-[20px]">
       <div className="flex justify-between items-center">
-        <div className="flex justify-center items-start gap-[10px]">
+        <div className="flex justify-center items-start gap-[10px] " onClick={()=>handleGetProfile(author.username)} >
           <div className="w-[70px] h-[70px] rounded-full overflow-hidden cursor-pointer items-center justify-center flex ">
             <img src={author.profileImage || profile} className="h-full" />
           </div>

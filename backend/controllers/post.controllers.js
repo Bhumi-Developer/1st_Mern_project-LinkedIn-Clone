@@ -28,7 +28,7 @@ return res.status(201).json(newPost)
 
 export const getPost = async(req,res)=>{
     try {
-        const post = await Post.find().populate("author","firstname lastname profileImage headline")
+        const post = await Post.find().populate("author","firstname lastname profileImage headline username")
         .populate("comment.user","firstname lastname profileImage headline")
         .sort({createdAt: -1})
         return res.status(200).json(post)

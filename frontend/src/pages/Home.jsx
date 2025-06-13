@@ -55,7 +55,7 @@ function Home() {
       <div className="pt-[80px] flex items-center lg:items-start justify-center gap-[20px] px-[20px] flex-col lg:flex-row ">
         <div className="w-full lg:w-[25%] min-h-[200px] bg-white shadow-lg rounded-lg p-[10px]relative">
           <div className="w-[100%] h-[100px] bg-gray-400 rounded overflow-hidden flex items-center justify-center">
-            <img src={userData.coverImage || ""} className="w-full" />
+            <img src={userData.coverImage || profile} className="w-full" />
             <MdOutlineCameraAlt
               className="absolute right-[40px] top-[145px] w-[25px] h-[25px] text-white cursor-pointer lg:left-[22%]"
               onClick={() => setEdit(true)}

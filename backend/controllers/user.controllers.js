@@ -63,4 +63,39 @@ export const updateProfile = async (req, res) => {
       console.log(error)
     }
   };
+
+export const getprofile = async(req,res)=>{
+  try {
+    let {username} = req.params
+    let user = await User.findOne({username}).select("-password")
+
+    if(!user){
+      return res.status(400).json({message:"username doesnot exist"})
+    }
+    return res.status(200).json(user)
+  } catch (error) {
+    return res.status(500).json({message: "get profile error"})
+  }
+}
   
+
+export const search = async(req,res)=>{
+  try {
+    let {query}  = req.query
+  if(!query){
+    return res.status(400).json({message:"query is required"})
+  }
+  let users = await User.find({
+    $or:[
+      {firstname:{$regex:query,$options:"i"}},
+      {lastname:{$regex:query,$options:"i"}},
+      {username:{$regex:query,$options:"i"}},
+      {skills:{$in:[query]}}
+      
+    ]
+  })
+  return res.status(200).json(users)
+  } catch (error) {
+    return res.status(500).json({message: "search error"})
+  }
+}
