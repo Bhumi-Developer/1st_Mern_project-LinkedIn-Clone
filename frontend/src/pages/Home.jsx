@@ -37,7 +37,7 @@ function Home() {
       if(backendImage){
         formdata.append("image",backendImage)
       }
-      let result = await axios.post("http://localhost:3000/api/post/create",formdata,
+      let result = await axios.post(" https://linkedin-backend-wg07.onrender.com/api/post/create",formdata,
         {withCredentials:true}
       )
       console.log(result)
@@ -50,7 +50,7 @@ function Home() {
   }
   const handleSuggestedUsers = async()=>{
     try {
-      let result = await axios.get("http://localhost:3000/api/user/suggestedusers",{withCredentials:true})
+      let result = await axios.get(" https://linkedin-backend-wg07.onrender.com/api/user/suggestedusers",{withCredentials:true})
       // console.log(result.data)
       setSuggestedUser(result.data)
     } catch (error) {
