@@ -10,7 +10,7 @@ function Network() {
 
     const handleGetRequests = async()=>{
         try {
-            let result = await axios.get(`http://localhost:3000/api/connection/requests`,{withCredentials:true})
+            let result = await axios.get(` https://linkedin-backend-wg07.onrender.com/api/connection/requests`,{withCredentials:true})
             setConnections(result.data)
         } catch (error) {
            console.log(error);
@@ -19,7 +19,7 @@ function Network() {
     }
     const handleAcceptConnections = async(requestId)=>{
         try {
-            let result = await axios.put(`http://localhost:3000/api/connection/accept/${requestId}`,{},{withCredentials:true})
+            let result = await axios.put(` https://linkedin-backend-wg07.onrender.com/api/connection/accept/${requestId}`,{},{withCredentials:true})
             setConnections(connections.filter((con)=>con._id==requestId))
         } catch (error) {
            console.log(error);
@@ -28,7 +28,7 @@ function Network() {
     }
     const handleRejectConnections = async(requestId)=>{
         try {
-            let result = await axios.put(`http://localhost:3000/api/connection/reject/${requestId}`,{},{withCredentials:true})
+            let result = await axios.put(` https://linkedin-backend-wg07.onrender.com/api/connection/reject/${requestId}`,{},{withCredentials:true})
             setConnections(connections.filter((con)=>con._id==requestId))
         } catch (error) {
            console.log(error);
