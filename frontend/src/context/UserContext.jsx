@@ -2,6 +2,10 @@ import React, { createContext, useEffect,useState } from 'react'
 export const UserDataContext = createContext()
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import {io} from "socket.io-client"
+// import ConnectionButton from "./ConnectionButton";
+
+ export const socket = io("http://localhost:3000")
 
 function UserContext({children}) {
     const [userData,setUserData] = useState(null)
@@ -39,7 +43,7 @@ function UserContext({children}) {
     const handleGetProfile = async(username)=>{
       try {
         let result = await axios.get(`http://localhost:3000/api/user/profile/${username}`,{withCredentials:true})
-        console.log(result)
+        // console.log(result)
         setProfileData(result.data)
         navigate("/profile")
       } catch (error) {

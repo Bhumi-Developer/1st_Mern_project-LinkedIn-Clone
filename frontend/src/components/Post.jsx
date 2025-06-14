@@ -8,16 +8,15 @@ import axios from "axios";
 import { UserDataContext } from "../context/UserContext";
 import { AiFillLike } from "react-icons/ai";
 import { LuSendHorizontal } from "react-icons/lu";
-import {io} from "socket.io-client"
 import ConnectionButton from "./ConnectionButton";
-const socket = io("http://localhost:3000")
+import { socket } from "../context/UserContext";
 
 function Post({ id, author, like, comment, description, image, createdAt}) {
   let { userData, setUserData, getPost,profileData,setProfileData,handleGetProfile } = useContext(UserDataContext);
   let [more, setMore] = useState(false);
-  let [likes, setLikes] = useState(like || []);
+  let [likes, setLikes] = useState([]);
   let [commentContent, setCommentContent] = useState("");
-  let [comments, setComments] = useState(comment || []);
+  let [comments, setComments] = useState([]);
   let [showComment,setShowComment] = useState(false)
 
   const handleLike = async () => {
@@ -64,10 +63,10 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
       socket.off("commentAdded")
     }
   },[id])
-
-  useEffect(() => {
-    getPost();
-  }, [likes, setLikes,comments]);
+  useEffect(()=>{
+    setLikes(like)
+    setComments(comment)
+  },[like,comment])
 
   return (
     <div className="w-full min-h-[200px] bg-white rounded-lg shadow-lg p-[20px] flex flex-col gap-[20px]">

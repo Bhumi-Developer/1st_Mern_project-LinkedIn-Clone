@@ -1,6 +1,7 @@
 import uploadOnCloudinary from "../config/cloudinary.js"
 import { io } from "../index.js"
 import Post from "../models/post.js"
+import Notification from "../models/notification.js"
 
 export const createPost = async(req,res)=>{
     try {
@@ -49,6 +50,13 @@ export const like = async(req,res) =>{
         post.like = post.like.filter((id)=>id!=userId)
     }else{
         post.like.push(userId)
+        if(post.author!==userId){
+        let notification=await Notification.create({
+            receiver:post.author,
+            type:"like",
+            relatedUser:userId,
+            relatedPost:postId
+        })}
     }
     await post.save()
     io.emit("likeUpdated",{postId,likes:post.like})
@@ -67,6 +75,16 @@ export const comment = async(req,res)=>{
         let post = await Post.findByIdAndUpdate(postId,{
             $push:{comment:{content,user:userId}}
         },{new:true}).populate("comment.user","firstname lastname profileImage headline")
+
+        if(post.author!==userId){
+            let notification=await Notification.create({
+                receiver:post.author,
+                type:"comment",
+                relatedUser:userId,
+                relatedPost:postId
+            })
+        }
+        
 
         io.emit("commentAdded",{postId,comm:post.comment})
         return res.status(200).json(post)

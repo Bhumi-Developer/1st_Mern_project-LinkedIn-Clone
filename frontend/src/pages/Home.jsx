@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import profile from "../assets/profile.jpeg";
 import { TiPlus } from "react-icons/ti";
@@ -19,6 +19,7 @@ function Home() {
   let [description,setDescription] = useState("")
   let [uploadPost,setUploadPost] = useState(false)
   let [posting,setPosting] = useState(false)
+  let [suggesteduser,setSuggestedUser] = useState([])
 
   const image = useRef()
   
@@ -47,6 +48,18 @@ function Home() {
       setPosting(false)
     }
   }
+  const handleSuggestedUsers = async()=>{
+    try {
+      let result = await axios.get("http://localhost:3000/api/user/suggestedusers",{withCredentials:true})
+      // console.log(result.data)
+      setSuggestedUser(result.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    handleSuggestedUsers()
+  },[])
 
   return (
     <div className="w-full min-h-[100vh] bg-[#eeebda] pb-[50px]">
@@ -137,7 +150,22 @@ function Home() {
          ))}
         </div>
 
-        <div className="w-full lg:w-[25%] min-h-[200px] bg-white shadow-lg"></div>
+        <div className="w-full lg:w-[25%] min-h-[200px] bg-white shadow-lg hidden lg:flex flex-col p-[10px]">
+          <h1 className="text-[20px] text-gray-600 font-semibold">Suggested Users</h1>
+          {suggesteduser.length>0 && <div className="flex flex-col gap-[10px]">
+          {suggesteduser.map((su)=>(
+            <div className="flex pt-[20px] gap-[20px] border-b-2 p-[10px] items-center">
+               <div className="w-[50px] h-[50px] rounded-full overflow-hidden cursor-pointer items-center justify-center flex ">
+                          <img src={su.profileImage || profile} className="h-full" />
+                        </div>
+                        <div className="flex flex-col">
+                        <div className="text-[18px] font-semibold">{`${su.firstname} ${su.lastname}`}</div>
+                        <div className="text-[16px]">{su.headline}</div>
+                        </div>
+            </div>
+          ))}
+          </div>}
+        </div>
       </div>
     </div>
 );

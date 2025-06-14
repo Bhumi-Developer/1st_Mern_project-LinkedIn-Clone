@@ -1,7 +1,8 @@
 // import { Connection } from "mongoose"
 import { userSocketMap } from "../index.js"
 import User from "../models/user.js"
-import Connection from "../models/connection.js"; 
+import Connection from "../models/connection.js";
+import Notification from "../models/notification.js"; 
 
 
 export const sendConnection = async(req,res)=>{
@@ -50,6 +51,7 @@ export const sendConnection = async(req,res)=>{
 export const acceptConnection = async(req,res)=>{
     try {
         let {connectionId} = req.params
+        let userId = req.userId
         let connection = await Connection.findById(connectionId)
         if(!connection){
             return res.status(400).json({message:"connection donot exist"})
@@ -58,6 +60,13 @@ export const acceptConnection = async(req,res)=>{
             return res.status(400).json({message:"req under process"})
         }
         connection.status="accepted"
+
+        let notification=await Notification.create({
+            receiver:connection.sender,
+            type:"connectionAccepted",
+            relatedUser:userId,
+        })
+
         await connection.save()
         await User.findByIdAndUpdate(req.userId,{
             $addToSet:{connection:connection.sender._id}

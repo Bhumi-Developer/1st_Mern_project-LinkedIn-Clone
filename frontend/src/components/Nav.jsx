@@ -59,7 +59,7 @@ useEffect(()=>{
             <IoSearchSharp className="w-[23px] h-[23px] text-gray-600 lg:hidden" onClick={()=>setActiveSearch(true)} />
           </div>}
 
-          {searchData.length >0 &&  <div className="absolute top-[70px] min-h-[100px] left-[0px] lg:left-[20px] shadow-lg w-[100%] lg:w-[700px] bg-white flex flex-col gap-[20px] p-[20px]">
+          {searchData.length >0 &&  <div className="absolute top-[70px] min-h-[100px] left-[0px] lg:left-[20px] shadow-lg w-[100%] lg:w-[700px] bg-white flex flex-col gap-[20px] p-[20px] overflow-auto">
             {searchData.map((sea)=>(
               <div className="flex gap-[20px] items-center border-b-2 border-b-gray-300 p-[5px] hover:bg-gray-200 cursor-pointer rounded-lg" onClick={()=>handleGetProfile(sea.username)}>
                <div className="w-[70px] rounded-full overflow-hidden"><img src={sea.profileImage || profile}/></div>
@@ -96,8 +96,8 @@ useEffect(()=>{
         <div>Home</div></div>
         <div  className="lg:flex flex-col items-center justify-center text-gray-600 hidden cursor-pointer" onClick={()=>navigate("/network")}><HiUsers className="w-[23px] h-[23px] text-gray-600"/>
         <div>My Network</div></div>
-        <div  className="flex flex-col items-center justify-center text-gray-600"><BsBellFill className="w-[23px] h-[23px] text-gray-600 "/>
-        <div className="hidden md:block">Notifications</div></div>
+        <div  className="flex flex-col items-center justify-center text-gray-600" onClick={()=>navigate("/notification")}><BsBellFill className="w-[23px] h-[23px] text-gray-600 "/>
+        <div className="hidden md:block" >Notifications</div></div>
         <div className="w-[50px] rounded-full overflow-hidden cursor-pointer" onClick={()=>setShowPopup(prev=>!prev)}><img src={userData.profileImage || profile}/></div>
       </div>
     </div>

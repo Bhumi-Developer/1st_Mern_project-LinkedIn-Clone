@@ -99,3 +99,17 @@ export const search = async(req,res)=>{
     return res.status(500).json({message: "search error"})
   }
 }
+
+export const getSuggestedUser = async(req,res)=>{
+  try {
+    const CurrentUser = await User.findById(req.userId).select("connection")
+    const suggestedUsers = await User.find({
+     _id:{
+      $ne:CurrentUser,$nin:CurrentUser.connection
+     }
+    }).select("-password")
+    return res.status(200).json(suggestedUsers)
+  } catch (error) {
+    console.log(error)
+  }
+}
