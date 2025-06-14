@@ -117,7 +117,7 @@ function EditProfile() {
       if(backendCoverImage){
         formdata.append("coverImage",backendCoverImage)
       }
-      let result = await axios.put("http://localhost:3000/api/user/updateprofile",formdata,{withCredentials:true})
+      let result = await axios.put(" https://linkedin-backend-wg07.onrender.com/api/user/updateprofile",formdata,{withCredentials:true})
       setUserData(result.data)
       setSaving(false)
       setEdit(false)
