@@ -104,7 +104,7 @@ function Home() {
         {uploadPost &&  <div className=" fixed w-full h-full bg-black  top-0 z-[100] left-0 opacity-[0.6]"></div>}
 
        {uploadPost && 
-        <div className="w-[90%] max-w-[500px] h-[600px] bg-white shadow-lg rounded-lg absolute z-[200] p-[20px] flex items-start justify-start flex-col gap-[20px] ">
+        <div className="w-[90%] max-w-[500px] h-[600px] bg-white shadow-lg rounded-lg fixed top-20 z-[200] p-[20px] flex items-start justify-start flex-col gap-[20px] ">
           <div
             className="absolute top-[20px] right-[20px] cursor-pointer"
           >
@@ -153,8 +153,8 @@ function Home() {
         <div className="w-full lg:w-[25%] min-h-[200px] bg-white shadow-lg hidden lg:flex flex-col p-[10px]">
           <h1 className="text-[20px] text-gray-600 font-semibold">Suggested Users</h1>
           {suggesteduser.length>0 && <div className="flex flex-col gap-[10px]">
-          {suggesteduser.map((su)=>(
-            <div className="flex pt-[20px] gap-[20px] border-b-2 p-[10px] items-center">
+          {suggesteduser.map((su,index)=>(
+            <div key={index} className="flex pt-[20px] gap-[20px] border-b-2 p-[10px] items-center">
                <div className="w-[50px] h-[50px] rounded-full overflow-hidden cursor-pointer items-center justify-center flex ">
                           <img src={su.profileImage || profile} className="h-full" />
                         </div>

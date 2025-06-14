@@ -42,6 +42,7 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
         { withCredentials: true }
       );
       setComments(result.data.comment);
+      setCommentContent("")
     } catch (error) {
       console.log(error);
     }
@@ -157,7 +158,7 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
           </form>
           <div className="flex flex-col gap-[20px]">
             {comments.map((com) => {
-                console.log(com.user)
+                // console.log(com.user)
               return (
                 <div
                   key={com._id}

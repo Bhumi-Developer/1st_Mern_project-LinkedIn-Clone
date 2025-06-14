@@ -63,12 +63,12 @@ function Notification() {
         Notifications: {notificationData.length}
         </div>
         
-        <button className="min-w-[100px] h-[40px] rounded-full border-2 border-[#fe243e] text-[#fe243e]" onClick={handleClearAllNotification}>Clear All</button>
+       {notificationData.length >0 &&  <button className="min-w-[100px] h-[40px] rounded-full border-2 border-[#fe243e] text-[#fe243e]" onClick={handleClearAllNotification}>Clear All</button>}
         </div>
         {notificationData.length > 0 && (
-          <div className="w-[100%] max-w-[900px] shadow-lg rounded-lg flex flex-col gap-[20px] h-[100vh] overflow-auto bg-white ">
+          <div className="w-[100%] max-w-[900px] shadow-lg rounded-lg flex flex-col gap-[20px]   overflow-auto bg-white pt-10 pl-10 mb-10">
             {notificationData.map((noti, index) => (
-              <div className="w-full min-h-[100px] p-[20px] flex justify-between items-center border-b-2 border-b-gray-200" key={index}>
+              <div className="w-full min-h-[100px] pt-10 pb-10 flex justify-between items-center border-b-2 border-b-gray-200" key={index}>
                 <div >
                 <div className="flex justify-center items-center gap-[10px]">
                   <div className="w-[50px] h-[50px]rounded-full overflow-hidden cursor-pointer">
@@ -82,7 +82,7 @@ function Notification() {
                 
                 
                 </div>
-                {noti.relatedPost && <div className="flex items-center gap-[10px] ml-[80px] min-h-[80px] overflow-hidden pt-[20px] pb-[5px]">
+                {noti.relatedPost && <div className="flex items-center gap-[10px] ml-[80px] min-h-[60px] overflow-hidden pt-[0px]">
                     <div className="w-[80px] h-[50px] overflow-hidden">
                         <img src={noti.relatedPost.image} className="h-full"/>
                         </div>
