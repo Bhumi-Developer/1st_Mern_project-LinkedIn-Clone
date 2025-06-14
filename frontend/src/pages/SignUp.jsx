@@ -29,7 +29,7 @@ function SignUp() {
       },{withCredentials: true});
       
     //  alert("user signed up successfully")
-     setUserData(result.data)
+     setUserData(res.data)
      navigate("/")
      setError("")
      setFirstname("")
