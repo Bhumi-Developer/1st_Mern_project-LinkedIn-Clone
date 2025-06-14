@@ -10,7 +10,7 @@ function Notification() {
   const handleGetNotification = async () => {
     try {
       let result = await axios.get(
-        "http://localhost:3000/api/notification/get",
+        " https://linkedin-backend-wg07.onrender.com/api/notification/get",
         { withCredentials: true }
       );
       setNotificationData(result.data);
@@ -21,7 +21,7 @@ function Notification() {
   const handledeleteNotification = async (id) => {
     try {
       let result = await axios.delete(
-        `http://localhost:3000/api/notification/deleteone/${id}`,
+        ` https://linkedin-backend-wg07.onrender.com/api/notification/deleteone/${id}`,
         { withCredentials: true }
       );
       await handleGetNotification()
@@ -32,7 +32,7 @@ function Notification() {
   const handleClearAllNotification = async () => {
     try {
       let result = await axios.delete(
-        `http://localhost:3000/api/notification/deletemany`,
+        ` https://linkedin-backend-wg07.onrender.com/api/notification/deletemany`,
         { withCredentials: true }
       );
       await handleGetNotification()
