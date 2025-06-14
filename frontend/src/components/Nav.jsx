@@ -21,7 +21,7 @@ function Nav() {
 
   const handleSignOut = async()=>{
     try {
-      const result = await axios.get("http://localhost:3000/api/auth/logout",{withCredentials: true})
+      const result = await axios.get(" https://linkedin-backend-wg07.onrender.com/api/auth/logout",{withCredentials: true})
       setUserData(null)
       navigate("/login")
     } catch (error) {
@@ -31,7 +31,7 @@ function Nav() {
 
   const handleSearch = async () => {
     try {
-      const result = await axios.get("http://localhost:3000/api/user/search", {
+      const result = await axios.get(" https://linkedin-backend-wg07.onrender.com/api/user/search", {
         params: { query: searchInput },
         withCredentials: true,
       });
