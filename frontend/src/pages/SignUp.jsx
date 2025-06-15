@@ -20,7 +20,7 @@ function SignUp() {
     e.preventDefault();
     setLoading(true)
     try {
-      const res = await axios.post( "http://localhost:3000/api/auth/signUp", {
+      const res = await axios.post( " https://linkedin-backend-wg07.onrender.com/api/auth/signUp", {
         firstname,
         lastname,
         email,

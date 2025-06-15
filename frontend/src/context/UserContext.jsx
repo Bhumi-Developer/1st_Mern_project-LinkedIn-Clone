@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import {io} from "socket.io-client"
 // import ConnectionButton from "./ConnectionButton";
 
- export const socket = io("http://localhost:3000")
+ export const socket = io(" https://linkedin-backend-wg07.onrender.com")
 
 function UserContext({children}) {
     const [userData,setUserData] = useState(null)
@@ -16,7 +16,7 @@ function UserContext({children}) {
 
     const getCurrentUser = async()=>{
         try {
-            let result = await axios.get("http://localhost:3000/api/user/currentUser",{
+            let result = await axios.get(" https://linkedin-backend-wg07.onrender.com/api/user/currentUser",{
               withCredentials: true
             })
             setUserData(result.data)
@@ -28,7 +28,7 @@ function UserContext({children}) {
     }
     const getPost = async()=>{
         try {
-            let result = await axios.get("http://localhost:3000/api/post/getpost",{
+            let result = await axios.get(" https://linkedin-backend-wg07.onrender.com/api/post/getpost",{
               withCredentials: true
             })
           //  console.log(result)
@@ -42,7 +42,7 @@ function UserContext({children}) {
 
     const handleGetProfile = async(username)=>{
       try {
-        let result = await axios.get(`http://localhost:3000/api/user/profile/${username}`,{withCredentials:true})
+        let result = await axios.get(` https://linkedin-backend-wg07.onrender.com/api/user/profile/${username}`,{withCredentials:true})
         // console.log(result)
         setProfileData(result.data)
         navigate("/profile")

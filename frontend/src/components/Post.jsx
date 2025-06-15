@@ -22,7 +22,7 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
   const handleLike = async () => {
     try {
       let result = await axios.post(
-        `http://localhost:3000/api/post/like/${id}`,
+        ` https://linkedin-backend-wg07.onrender.com/api/post/like/${id}`,
         {},
         { withCredentials: true }
       );
@@ -37,7 +37,7 @@ function Post({ id, author, like, comment, description, image, createdAt}) {
     e.preventDefault();
     try {
       let result = await axios.post(
-        `http://localhost:3000/api/post/comment/${id}`,
+        ` https://linkedin-backend-wg07.onrender.com/api/post/comment/${id}`,
         { content: commentContent },
         { withCredentials: true }
       );

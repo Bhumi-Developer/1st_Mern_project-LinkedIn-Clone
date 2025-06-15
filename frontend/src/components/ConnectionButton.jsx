@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import io from "socket.io-client"
 import { UserDataContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-const socket = io("http://localhost:3000")
+const socket = io(" https://linkedin-backend-wg07.onrender.com")
 
 function ConnectionButton({userId}) {
 let {userData} = useContext(UserDataContext)
@@ -13,21 +13,21 @@ let navigate = useNavigate()
 
     const handleSendConnection = async()=>{
         try {
-            let result = await axios.post(`http://localhost:3000/api/connection/send/${userId}`,{},{withCredentials:true})
+            let result = await axios.post(` https://linkedin-backend-wg07.onrender.com/api/connection/send/${userId}`,{},{withCredentials:true})
         } catch (error) {
             console.log(error)
         }
     }
     const handleRemoveConnection = async()=>{
         try {
-            let result = await axios.delete(`http://localhost:3000/api/connection/remove/${userId}`,{withCredentials:true})
+            let result = await axios.delete(` https://linkedin-backend-wg07.onrender.com/api/connection/remove/${userId}`,{withCredentials:true})
         } catch (error) {
             console.log(error)
         }
     }
     const handleGetStatus = async()=>{
         try {
-            let result = await axios.get(`http://localhost:3000/api/connection/getstatus/${userId}`,{withCredentials:true})
+            let result = await axios.get(` https://linkedin-backend-wg07.onrender.com/api/connection/getstatus/${userId}`,{withCredentials:true})
             setStatus(result.data.status)
         } catch (error) {
             console.log(error)
